@@ -1,11 +1,13 @@
 const playerSkill = require('./playerSkill');
+const playerStats = require('./playerStats');
 
 const Player = `
   type Player {
     id: ID!,
     username: String,
     skills: [PlayerSkill],
-    titles: [String]
+    titles: [String],
+    stats: PlayerStats
   }
 `;
 
@@ -22,11 +24,12 @@ const resolver = {
     titles: (player, _args, { api }) =>
       api
         .getPlayerTitles(player.id, player.platform)
-        .then(response => response.titles)
+        .then(response => response.titles),
+    stats: player => player
   }
 };
 
 module.exports = {
-  typeDefs: [Player, ...playerSkill.typeDefs],
-  resolver: { ...resolver, ...playerSkill.resolver }
+  typeDefs: [Player, ...playerSkill.typeDefs, ...playerStats.typeDefs],
+  resolver: { ...resolver, ...playerSkill.resolver, ...playerStats.resolver }
 };

@@ -30,6 +30,11 @@ function apiFactory(token) {
     getRegions() {
       return this.makeRequest('/regions');
     },
+    getPlayerStat(id, platform, statType) {
+      return this.makeRequest(
+        `/${keyForPlatform(platform)}/leaderboard/stats/${statType}/${id}`
+      );
+    },
     makeRequest(path, method = 'GET', body) {
       return got(`${BASE_URL}${path}`, {
         method,
