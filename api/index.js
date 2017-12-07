@@ -27,6 +27,9 @@ function apiFactory(token) {
         `/${keyForPlatform(platform)}/playertitles/${id}`
       );
     },
+    getRegions() {
+      return this.makeRequest('/regions');
+    },
     makeRequest(path, method = 'GET', body) {
       return got(`${BASE_URL}${path}`, {
         method,
