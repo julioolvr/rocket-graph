@@ -1,5 +1,3 @@
-const api = require('../api');
-
 const Player = `
   type Player {
     id: ID!,
@@ -9,10 +7,10 @@ const Player = `
 
 const resolver = {
   Player: {
-    username: player =>
-      api
-        .getPlayerSkills(player.id, player.platform)
-        .then(response => response[0].user_name)
+    username: (player, _args, { api }) =>
+      api.getPlayerSkills(player.id, player.platform).then(response => {
+        return response[0].user_name;
+      })
   }
 };
 
