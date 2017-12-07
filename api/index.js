@@ -22,6 +22,11 @@ function apiFactory(token) {
         `/${keyForPlatform(platform)}/playerskills/${id}`
       );
     },
+    getPlayerTitles(id, platform) {
+      return this.makeRequest(
+        `/${keyForPlatform(platform)}/playertitles/${id}`
+      );
+    },
     makeRequest(path, method = 'GET', body) {
       return got(`${BASE_URL}${path}`, {
         method,

@@ -21,6 +21,6 @@ const resolver = {
 };
 
 module.exports = {
-  typeDefs: [player.typeDef, typeDef],
+  typeDefs: [...player.typeDefs, typeDef],
   resolvers: { ...player.resolver, ...resolver }
 };
