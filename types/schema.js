@@ -15,7 +15,7 @@ const typeDef = `
 const resolver = {
   Query: {
     player(root, args) {
-      return { id: args.id, username: `${args.platform} player` };
+      return { id: args.id, platform: args.platform };
     }
   }
 };
